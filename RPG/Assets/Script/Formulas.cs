@@ -40,18 +40,26 @@ public static class Formulas
 
     public static int GetPhysicalDamage(CharacterStats attacker, CharacterStats defender)
     {
-        float baseDamage = 5.0f * GetPhysicalAttackPower(attacker) / GetPhysicalDefensePower(defender);
+        // float baseDamage = 5.0f * GetPhysicalAttackPower(attacker) / GetPhysicalDefensePower(defender);
+
+        float baseDamage = GetPhysicalAttackPower(attacker) / GetPhysicalDefensePower(defender);  // * multiplier poner en el parentesis de arriba float multiplier
 
         if (baseDamage < 1.0f) baseDamage = 1.0f;
         return Mathf.FloorToInt(baseDamage);
     }
 
 
-    public static int GetMagicalDamage(CharacterStats attacker, CharacterStats defender)
+    public static int GetMagicalDamage(CharacterStats attacker, CharacterStats defender, float multiplier)
     {
-        float baseDamage = 5.0f * GetMagicalAttackPower(attacker) / GetMagicalDefensePower(defender);
+        //float baseDamage = 5.0f * GetMagicalAttackPower(attacker) / GetMagicalDefensePower(defender) * multiplier;
 
-        if (baseDamage < 1.0f) baseDamage = 1.0f;
+        float baseDamage = GetMagicalAttackPower(attacker)  / GetMagicalDefensePower(defender) * multiplier;
+
+        if (baseDamage < 1.0f)
+        {
+            baseDamage = 1.0f;
+        }
+        
         return Mathf.FloorToInt(baseDamage);
     }
 
@@ -63,7 +71,11 @@ public static class Formulas
     public static int GetExperienceFromKill(CharacterStats killer, CharacterStats killed)
     {
         float baseExp = 10.0f * (1.0f + ((killed.level - killer.level) * 0.1f));
-        if (baseExp < 1f) baseExp = 1f;
+        if (baseExp < 1f)
+        {
+            baseExp = 1f;
+        }
+ 
         return Mathf.RoundToInt(baseExp);
     }
 }

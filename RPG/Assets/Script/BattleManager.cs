@@ -14,6 +14,8 @@ public class BattleManager : MonoBehaviour
     }
     void Start()
     {
+        playerBattler.Initialize(new CharacterStats());
+        enemyBattler.Initialize(new CharacterStats());
         StartCoroutine(BattleCoroutine());
     }
 
@@ -22,17 +24,43 @@ public class BattleManager : MonoBehaviour
         bool battleEnded = false;
         while (!battleEnded)
         {
-            //Turno jugador 1 
-            yield return playerBattler.DoTurn();
-            //Comprobar victoria
-            
-            // Si gana un jugador battleEnded = true 
-            // Si no ha acabado la batalla -> Turno jugardor 2 
-            yield return playerBattler.DoTurn();
-            yield return null; //esperar al siguiente fotograma
+            UpdateATB();
+            if(playerBattler.atbBar >= 1.0f)
+            {
+                playerBattler.atbBar = 0f;
+                yield return playerBattler.DoTurn(enemyBattler);
+            }
+            if(enemyBattler.atbBar >= 1.0f)
+            {
+                enemyBattler.atbBar = 0f;
+                yield return enemyBattler.DoTurn(playerBattler);
+            }
+
+            if (HasABattlerDied())
+            {
+                // Si gana un jugador battleEnded = true
+                battleEnded = true;
+            }
+            yield return null; // Esperar al siguiente fotograma
+
         }
     }
-    
+
+    void UpdateATB()
+    {
+        //int minDex = Mathf.Min(playerBattler.stats.dexterity, enemyBattler.stats.dexterity);
+        int maxDex = Mathf.Max(playerBattler.stats.dexterity, enemyBattler.stats.dexterity);
+        float dexIncrement = Time.deltaTime * 0.25f / maxDex;
+        playerBattler.atbBar += playerBattler.stats.dexterity * dexIncrement;
+        enemyBattler.atbBar += enemyBattler.stats.dexterity * dexIncrement;
+
+        // DEBUG
+        playerBattler.GetComponent<Renderer>().material.color = new Color(playerBattler.atbBar, playerBattler.atbBar, playerBattler.atbBar);
+        enemyBattler.GetComponent<Renderer>().material.color = new Color(enemyBattler.atbBar, enemyBattler.atbBar, enemyBattler.atbBar);
+        // END DEBUG
+
+    }
+
     bool HasABattlerDied()
     {
         return playerBattler.hp <= 0 || enemyBattler.hp <= 0;
