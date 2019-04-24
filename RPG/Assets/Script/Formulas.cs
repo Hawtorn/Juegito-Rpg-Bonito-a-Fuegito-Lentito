@@ -12,7 +12,7 @@ public static class Formulas
 
     public static float GetAttackChance(CharacterStats stats, Equipment equipment)
     {
-        return 0.95f;
+        return 8f;
     }
 
     public static float GetDefense(CharacterStats stats, Equipment equipment)
@@ -83,7 +83,7 @@ public static class Formulas
         float attack = GetAttack(attackerStats, attackerEquipment);
         float defense = GetDefense(defenderStats, defenderEquipment);
         float baseDamage = attack + ((attack + attackerStats.level) / 32) + ((attack * attackerStats.level) / 32);
-        float damage = ((power * 16.0f * (512 - defense) * baseDamage) / (16 * 512));
+        float damage = ((power * 4.0f * (512 - defense) * baseDamage) / (16 * 512));
         return Mathf.CeilToInt(damage * Random.Range(0.9f, 1.1f));
     }
 
@@ -92,7 +92,7 @@ public static class Formulas
         float mAttack = GetMagicAttack(attackerStats, attackerEquipment);
         float mDefense = GetMagicDefense(attackerStats, attackerEquipment);
         float baseDamage = 6 * (mAttack + attackerStats.level);
-        float damage = ((power * 16.0f * (512 - mDefense) * baseDamage) / (16 * 512));
+        float damage = ((power * 2.0f * (512 - mDefense) * baseDamage) / (16 * 512));
         return Mathf.CeilToInt(damage * Random.Range(0.9f, 1.1f));
 
     }

@@ -4,18 +4,18 @@ using UnityEngine;
 
 public class BattleManager : MonoBehaviour
 {
-  public static BattleManager Instance { get; private set; }
+    public static BattleManager Instance { get; private set; }
     public Battler playerBattler;
     public Battler enemyBattler;
 
     void Awake()
     {
         Instance = this;
+        playerBattler.Initialize(new CharacterStats());
+        enemyBattler.Initialize(new CharacterStats());
     }
     void Start()
     {
-        playerBattler.Initialize(new CharacterStats());
-        enemyBattler.Initialize(new CharacterStats());
         StartCoroutine(BattleCoroutine());
     }
 
@@ -25,12 +25,12 @@ public class BattleManager : MonoBehaviour
         while (!battleEnded)
         {
             UpdateATB();
-            if(playerBattler.atbBar >= 1.0f)
+            if (playerBattler.atbBar >= 1.0f)
             {
                 playerBattler.atbBar = 0f;
                 yield return playerBattler.DoTurn(enemyBattler);
             }
-            if(enemyBattler.atbBar >= 1.0f)
+            else if (enemyBattler.atbBar >= 1.0f)
             {
                 enemyBattler.atbBar = 0f;
                 yield return enemyBattler.DoTurn(playerBattler);
@@ -54,10 +54,7 @@ public class BattleManager : MonoBehaviour
         playerBattler.atbBar += playerBattler.stats.dexterity * dexIncrement;
         enemyBattler.atbBar += enemyBattler.stats.dexterity * dexIncrement;
 
-        // DEBUG
-        playerBattler.GetComponent<Renderer>().material.color = new Color(playerBattler.atbBar, playerBattler.atbBar, playerBattler.atbBar);
-        enemyBattler.GetComponent<Renderer>().material.color = new Color(enemyBattler.atbBar, enemyBattler.atbBar, enemyBattler.atbBar);
-        // END DEBUG
+
 
     }
 

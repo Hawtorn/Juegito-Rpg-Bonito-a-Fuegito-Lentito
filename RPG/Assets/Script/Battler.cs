@@ -12,8 +12,16 @@ public class Battler : MonoBehaviour
 
     public float atbBar;
 
+    public GameObject damageIndacatorPrefab;
+
     const float ATTACK_DISTANCE = 1.0f;
     const float MOVEMENT_SPEED = 10.0f;
+
+    BaseSkill[] battlerSkills = new BaseSkill[]
+    {
+        new BasicPhysicalAttackSkill(),
+        new FireSkill()
+    };
 
     public void Initialize(CharacterStats stats)
     {
@@ -23,41 +31,39 @@ public class Battler : MonoBehaviour
         hp = maxHP;
         mp = maxMP;
 
-        // DEBUG
-        this.stats.dexterity = Random.Range(10, 100);
-        Debug.Log(gameObject.name + "'s dexterity is " + this.stats.dexterity);
-        // END DEBUG
+        
 
     }
 
     public IEnumerator DoTurn(Battler target)
     {
-        Vector3 startPosition = this.transform.position;
-
-        while (Vector3.Distance(this.transform.position, target.transform.position) > ATTACK_DISTANCE)
+        BaseSkill chosenSkill = battlerSkills[Random.Range(0, battlerSkills.Length)];
+        if (mp >= chosenSkill.GetMPCost())
         {
-            this.transform.position = Vector3.MoveTowards(this.transform.position,
-                target.transform.position, MOVEMENT_SPEED * Time.deltaTime);
-            yield return null;
+            mp -= chosenSkill.GetMPCost();
+            yield return chosenSkill.ExecuteSkill(this, new Battler[] { target });
         }
-
-        target.ReceiveDamage(Formulas.GetPhysicalDamage(1.0f, this.stats, null, target.stats, null));
-
-        while (Vector3.Distance(this.transform.position, startPosition) > 0.01f)
+        else
         {
-            this.transform.position = Vector3.MoveTowards(this.transform.position,
-                startPosition, MOVEMENT_SPEED * Time.deltaTime);
-            yield return null;
+            this.ShowDamageIndicator("No MP!!!!", Color.black);
         }
-        
-        /* Debug.Log("Start of" + gameObject.name + "´s turn");
-         yield return new WaitForSeconds(2.0f);
-         Debug.Log("End of" + gameObject.name + "´s turn");
-         */
     }
 
     public void ReceiveDamage(int damage)
     {
         this.hp -= damage;
+        ShowDamageIndicator(damage.ToString(), Color.white);
+        if(this.hp < 0)
+        {
+            this.hp = 0;
+        }
+    }
+
+    public void ShowDamageIndicator(string text, Color color)
+    {
+        GameObject textObject = GameObject.Instantiate(damageIndacatorPrefab, this.transform);
+        textObject.transform.position = this.transform.position + new Vector3(0f, 1f, 0f);
+        textObject.GetComponent<TextMesh>().text = text;
+        textObject.GetComponent<TextMesh>().color = color;
     }
 }

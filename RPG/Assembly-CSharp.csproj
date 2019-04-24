@@ -55,9 +55,14 @@
   <ItemGroup>
      <Compile Include="Assets\Script\BattleManager.cs" />
      <Compile Include="Assets\Script\Battler.cs" />
+     <Compile Include="Assets\Script\BattlerInfoPanel.cs" />
      <Compile Include="Assets\Script\CharacterStats.cs" />
+     <Compile Include="Assets\Script\DamageIndicator.cs" />
      <Compile Include="Assets\Script\Equipment.cs" />
      <Compile Include="Assets\Script\Formulas.cs" />
+     <Compile Include="Assets\Script\skills\BaseSkill.cs" />
+     <Compile Include="Assets\Script\skills\BasicPhysicalAttackSkill.cs" />
+     <Compile Include="Assets\Script\skills\FireSkill.cs" />
  <Reference Include="Unity.TextMeshPro.Editor">
  <HintPath>C:/Users/Usuario/Desktop/SVN/trunk/RPG/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
  </Reference>
