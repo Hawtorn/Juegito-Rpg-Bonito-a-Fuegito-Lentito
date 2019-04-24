@@ -41,7 +41,7 @@ public class Battler : MonoBehaviour
             yield return null;
         }
 
-        target.ReceiveDamage(Formulas.GetPhysicalDamage(this.stats, target.stats));
+        target.ReceiveDamage(Formulas.GetPhysicalDamage(1.0f, this.stats, null, target.stats, null));
 
         while (Vector3.Distance(this.transform.position, startPosition) > 0.01f)
         {
