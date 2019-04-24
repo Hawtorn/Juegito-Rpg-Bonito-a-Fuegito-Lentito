@@ -12,7 +12,7 @@ public static class Formulas
 
     public static float GetAttackChance(CharacterStats stats, Equipment equipment)
     {
-        return 8f;
+        return 80f;
     }
 
     public static float GetDefense(CharacterStats stats, Equipment equipment)
