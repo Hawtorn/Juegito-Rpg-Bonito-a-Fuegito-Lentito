@@ -20,6 +20,7 @@ public class FireSkill : BaseSkill
             yield return null;
         }
 
+        yield return CreateParticles(0, 0.5f, targets[0].transform.position);
 
         if(Formulas.DoesMagicAttackHit(user.stats, null, targets[0].stats, null))
         {
@@ -43,5 +44,10 @@ public class FireSkill : BaseSkill
     public override int GetMPCost()
     {
         return 5;
+    }
+
+    public override string GetName()
+    {
+        return "Fire";
     }
 }

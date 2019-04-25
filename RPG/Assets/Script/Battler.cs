@@ -17,7 +17,7 @@ public class Battler : MonoBehaviour
     const float ATTACK_DISTANCE = 1.0f;
     const float MOVEMENT_SPEED = 10.0f;
 
-    BaseSkill[] battlerSkills = new BaseSkill[]
+    public BaseSkill[] battlerSkills = new BaseSkill[]
     {
         new BasicPhysicalAttackSkill(),
         new FireSkill()
@@ -38,10 +38,15 @@ public class Battler : MonoBehaviour
     public IEnumerator DoTurn(Battler target)
     {
         BaseSkill chosenSkill = battlerSkills[Random.Range(0, battlerSkills.Length)];
-        if (mp >= chosenSkill.GetMPCost())
+        yield return ExecuteSkill(chosenSkill, target);
+    }
+
+    public IEnumerator ExecuteSkill(BaseSkill skill, Battler target)
+    {
+        if (mp >= skill.GetMPCost())
         {
-            mp -= chosenSkill.GetMPCost();
-            yield return chosenSkill.ExecuteSkill(this, new Battler[] { target });
+            mp -= skill.GetMPCost();
+            yield return skill.ExecuteSkill(this, new Battler[] { target });
         }
         else
         {

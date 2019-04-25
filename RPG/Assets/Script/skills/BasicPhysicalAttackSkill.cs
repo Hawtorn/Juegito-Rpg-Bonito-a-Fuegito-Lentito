@@ -48,4 +48,9 @@ public class BasicPhysicalAttackSkill : BaseSkill
     {
         return 0;
     }
+
+    public override string GetName()
+    {
+        return "Attack";
+    }
 }
