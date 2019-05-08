@@ -115,5 +115,26 @@ public static class Formulas
         return Mathf.CeilToInt(Mathf.Pow(stats.level, 0.9f) * 5.0f * Mathf.Log10(stats.magic * 20 + 1) * 0.75f);
 
     }
+
+
+    public static int GetExperienceToNextLevel(CharacterStats stats)
+    {
+        return stats.level * 100;
+    }
+
+    public static int GetExperienceEarned(CharacterStats killer, CharacterStats killed)
+    {
+        int levelDiff = killed.level - killer.level;
+        if(levelDiff <= 0)
+        {
+            levelDiff = 1;
+        }
+        return levelDiff * 50;
+    }
+
+    public static int GetUpgradePointsOnLevelUp()
+    {
+        return 16;
+    }
 }
 

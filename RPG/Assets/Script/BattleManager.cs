@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class BattleManager : MonoBehaviour
@@ -11,15 +12,33 @@ public class BattleManager : MonoBehaviour
     public GameObject skillButtonPrefab;
     public GameObject commands;
 
+    public BattlerInfoPanel playerPanel;
+    public BattlerInfoPanel enemyPanel;
+
     BaseSkill playerSkillToUse;
 
     void Awake()
     {
         Instance = this;
-        playerBattler.Initialize(new CharacterStats());
-        enemyBattler.Initialize(new CharacterStats());
+    }
+    void Start()
+    {
+        GameObject playerObject = Instantiate(GameManager.Instance.battlePlayerPrefab, new Vector3(-7f, 0f, 0f), Quaternion.identity);
 
-        for(int i=0; i<playerBattler.battlerSkills.Length; i++)
+        GameObject enemyObject = Instantiate(GameManager.Instance.battleEnemyPrefab, new Vector3(7f, 0f, 0f), Quaternion.identity);
+
+        playerBattler = playerObject.GetComponent<Battler>();
+        enemyBattler = enemyObject.GetComponent<Battler>();
+
+        playerPanel.battler = playerBattler;
+        enemyPanel.battler = enemyBattler;
+
+        playerBattler.stats = GameManager.Instance.playerCharactersStats;
+
+        playerBattler.Initialize();
+        enemyBattler.Initialize();
+        
+        for (int i = 0; i < playerBattler.battlerSkills.Length; i++)
         {
             GameObject buttonObject = GameObject.Instantiate(skillButtonPrefab, commands.transform);
             Button button = buttonObject.GetComponent<Button>();
@@ -30,9 +49,6 @@ public class BattleManager : MonoBehaviour
 
             button.onClick.AddListener(() => { playerSkillToUse = skill; });
         }
-    }
-    void Start()
-    {
         StartCoroutine(BattleCoroutine());
     }
 
@@ -60,6 +76,12 @@ public class BattleManager : MonoBehaviour
             {
                 // Si gana un jugador battleEnded = true
                 battleEnded = true;
+                if(playerBattler.hp > 0)
+                {
+                    GameManager.Instance.gainedExperience += Formulas.GetExperienceEarned(playerBattler.stats, enemyBattler.stats);
+                }
+               
+                SceneManager.LoadScene("Status");
             }
             yield return null; // Esperar al siguiente fotograma
 

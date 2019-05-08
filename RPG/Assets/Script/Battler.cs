@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Battler : MonoBehaviour
 {
+    public string battlerName;
     public CharacterStats stats;
     public int hp;
     public int maxHP;
@@ -17,21 +18,22 @@ public class Battler : MonoBehaviour
     const float ATTACK_DISTANCE = 1.0f;
     const float MOVEMENT_SPEED = 10.0f;
 
-    public BaseSkill[] battlerSkills = new BaseSkill[]
-    {
-        new BasicPhysicalAttackSkill(),
-        new FireSkill()
-    };
+    public BaseSkill[] battlerSkills;
+    public string[] skillNames;
 
-    public void Initialize(CharacterStats stats)
+    public void Initialize()
     {
-        this.stats = stats;
+        
         maxHP = Formulas.GetMaxHP(stats);
         maxMP = Formulas.GetMaxMP(stats);
         hp = maxHP;
         mp = maxMP;
 
-        
+        battlerSkills = new BaseSkill[skillNames.Length];
+        for (int i = 0; i < skillNames.Length; i++)
+        {
+            battlerSkills[i] = SkillDataBase.GetSkill(skillNames[i]);
+        }
 
     }
 

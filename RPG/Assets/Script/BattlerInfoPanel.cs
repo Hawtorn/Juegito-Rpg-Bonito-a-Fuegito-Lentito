@@ -21,7 +21,7 @@ public class BattlerInfoPanel : MonoBehaviour
         hpBar.transform.localScale = new Vector3((float)battler.hp / (float)battler.maxHP, 1f, 1f);
         mpBar.transform.localScale = new Vector3((float)battler.mp / (float)battler.maxMP, 1f, 1f);
 
-        nameText.text = battler.name;
+        nameText.text = battler.battlerName;
         hpText.text = "HP " + battler.hp + "/" + battler.maxHP;
         mpText.text = "MP " + battler.mp + "/" + battler.maxMP;
     }
