@@ -45,3 +45,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gfxPrefabs:
   - {fileID: 7530787818674121968, guid: 1d7c12e08106ae04993c1ea2c729dd2d, type: 3}
+  - {fileID: 8308221498516416400, guid: 3a84bcbf3b1a047428aab6382d300f39, type: 3}

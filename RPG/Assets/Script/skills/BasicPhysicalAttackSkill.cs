@@ -21,10 +21,10 @@ public class BasicPhysicalAttackSkill : BaseSkill
         }
 
 
-        if(Formulas.DoesAttackHit(user.stats, null, targets[0].stats, null))
+        if(Formulas.DoesAttackHit(user.stats, targets[0].stats))
         {
-            int damage = Formulas.GetPhysicalDamage(SKILL_POWER, user.stats, null, targets[0].stats, null);
-            if(Formulas.DoesAttackCrit(user.stats, null, targets[0].stats, null))
+            int damage = Formulas.GetPhysicalDamage(SKILL_POWER, user.stats,targets[0].stats);
+            if(Formulas.DoesAttackCrit(user.stats, targets[0].stats))
             {
                 damage *= 2;
             }

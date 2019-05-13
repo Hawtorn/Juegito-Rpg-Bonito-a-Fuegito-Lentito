@@ -35,6 +35,48 @@ public class BattleManager : MonoBehaviour
 
         playerBattler.stats = GameManager.Instance.playerCharactersStats;
 
+        //Strength
+        playerBattler.stats.strength += GameManager.Instance.weapon.strengthBonus;
+        playerBattler.stats.strength += GameManager.Instance.armor.strengthBonus;
+        playerBattler.stats.strength += GameManager.Instance.accesory.strengthBonus;
+        //Dexterity
+        playerBattler.stats.dexterity += GameManager.Instance.weapon.dexterityBonus;
+        playerBattler.stats.dexterity += GameManager.Instance.armor.dexterityBonus;
+        playerBattler.stats.dexterity += GameManager.Instance.accesory.dexterityBonus;
+        //Vitality
+        playerBattler.stats.vitality += GameManager.Instance.weapon.vitalityBonus;
+        playerBattler.stats.vitality += GameManager.Instance.armor.vitalityBonus;
+        playerBattler.stats.vitality += GameManager.Instance.accesory.vitalityBonus;
+        //Magic
+        playerBattler.stats.magic += GameManager.Instance.weapon.magicBonus;
+        playerBattler.stats.magic += GameManager.Instance.armor.magicBonus;
+        playerBattler.stats.magic += GameManager.Instance.accesory.magicBonus;
+        //Spirit
+        playerBattler.stats.spirit += GameManager.Instance.weapon.spiritBonus;
+        playerBattler.stats.spirit += GameManager.Instance.armor.spiritBonus;
+        playerBattler.stats.spirit += GameManager.Instance.accesory.spiritBonus;
+        //Luck
+        playerBattler.stats.luck += GameManager.Instance.weapon.luckBonus;
+        playerBattler.stats.luck += GameManager.Instance.armor.luckBonus;
+        playerBattler.stats.luck += GameManager.Instance.accesory.luckBonus;
+
+        //playerBattler.skillNames = GameManager.Instance.skills.ToArray();
+        List<string> skillsNames = new List<string>(GameManager.Instance.skills);
+
+        if (!string.IsNullOrEmpty(GameManager.Instance.weapon.specialSkill))
+        {
+            skillsNames.Add(GameManager.Instance.weapon.specialSkill);
+        }
+
+        if (!string.IsNullOrEmpty(GameManager.Instance.armor.specialSkill))
+        {
+            skillsNames.Add(GameManager.Instance.armor.specialSkill);
+        }
+        if (!string.IsNullOrEmpty(GameManager.Instance.accesory.specialSkill))
+        {
+            skillsNames.Add(GameManager.Instance.accesory.specialSkill);
+        }
+
         playerBattler.Initialize();
         enemyBattler.Initialize();
         

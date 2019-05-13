@@ -13,11 +13,22 @@ public class GameManager : MonoBehaviour
     public GameObject battlePlayerPrefab;
     public GameObject battleEnemyPrefab;
 
+    public List<string> skills;
+
+    public Equipment[] equipamentOnSale;
+    public List<Equipment> equipamentBought;
+    public Equipment weapon;
+    public Equipment armor;
+    public Equipment accesory;
+
     void Awake()
     {
         Instance = this;
 
         DontDestroyOnLoad(this.gameObject);
+
+        skills = new List<string>();
+        skills.Add("Attack");
     }
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]

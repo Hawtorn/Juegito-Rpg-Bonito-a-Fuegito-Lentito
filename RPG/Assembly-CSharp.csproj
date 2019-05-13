@@ -66,6 +66,7 @@
      <Compile Include="Assets\Script\skills\BasicPhysicalAttackSkill.cs" />
      <Compile Include="Assets\Script\skills\FireSkill.cs" />
      <Compile Include="Assets\Script\skills\SkillDataBase.cs" />
+     <Compile Include="Assets\Script\skills\SonicWaveSkill.cs" />
      <Compile Include="Assets\Script\UI\ButonFunctions.cs" />
      <Compile Include="Assets\Script\UI\UpgradePanelScript.cs" />
  <Reference Include="Unity.TextMeshPro.Editor">

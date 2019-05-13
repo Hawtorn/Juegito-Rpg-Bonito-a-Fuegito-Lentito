@@ -2,17 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Equipment : MonoBehaviour
+public enum EquipamentSlot
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    Weapon, Armor, Acessory
+}
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+[System.Serializable]
+public struct Equipment 
+{
+    public string name;
+    public int cost;
+    public EquipamentSlot slot;
+
+    public int strengthBonus;
+    public int dexterityBonus;
+    public int vitalityBonus;
+    public int magicBonus;
+    public int spiritBonus;
+    public int luckBonus;
+
+
+    public string specialSkill;
 }

@@ -38,16 +38,28 @@ public class UpgradePanelScript : MonoBehaviour
                 GameManager.Instance.playerExperience++;
                 if(GameManager.Instance.playerExperience >= Formulas.GetExperienceToNextLevel(GameManager.Instance.playerCharactersStats))
                 {
-                    GameManager.Instance.playerExperience = 0;
-                    GameManager.Instance.playerCharactersStats.level++;
-                    GameManager.Instance.upgradePoints += Formulas.GetUpgradePointsOnLevelUp();
 
-
+                    LevelUp();
                 }
             }
         }
 
 
+
+    }
+    void LevelUp()
+    {
+        GameManager.Instance.playerExperience = 0;
+        GameManager.Instance.playerCharactersStats.level++;
+        GameManager.Instance.upgradePoints += Formulas.GetUpgradePointsOnLevelUp();
+
+        if(GameManager.Instance.playerCharactersStats.level >= 2)
+        {
+            if (!GameManager.Instance.skills.Contains("Fire"))
+            {
+                GameManager.Instance.skills.Add("Fire");
+            }
+        }
 
     }
 

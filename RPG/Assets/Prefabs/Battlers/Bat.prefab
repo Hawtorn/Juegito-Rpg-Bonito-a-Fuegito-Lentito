@@ -107,8 +107,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   battlerName: Bat
   stats:
-    level: 1
-    experience: 0
+    level: 5
     strength: 80
     dexterity: 120
     vitality: 70
@@ -124,3 +123,4 @@ MonoBehaviour:
     type: 3}
   skillNames:
   - Attack
+  - Sonic Wave

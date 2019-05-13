@@ -11,6 +11,7 @@ public static class SkillDataBase
     {
         skills.Add("Attack", new BasicPhysicalAttackSkill());
         skills.Add("Fire", new FireSkill());
+        skills.Add("Sonic Wave", new SonicWaveSkill());
     }
 
 
