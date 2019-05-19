@@ -121,6 +121,7 @@ public class BattleManager : MonoBehaviour
                 if(playerBattler.hp > 0)
                 {
                     GameManager.Instance.gainedExperience += Formulas.GetExperienceEarned(playerBattler.stats, enemyBattler.stats);
+                    GameManager.Instance.gold += Formulas.GetGold(playerBattler.stats, enemyBattler.stats);
                 }
                
                 SceneManager.LoadScene("Status");

@@ -8,6 +8,7 @@ public class UpgradePanelScript : MonoBehaviour
     public Image expBar;
     public Text expBarText;
     public Text level;
+    public Text gold;
     public Text upgradePoints;
     public Text streght;
     public Text dexterity;
@@ -18,17 +19,18 @@ public class UpgradePanelScript : MonoBehaviour
 
     void Update()
     {
-        level.text = "Level" + GameManager.Instance.playerCharactersStats.level;
+        level.text = "Level " + GameManager.Instance.playerCharactersStats.level;
+        gold.text = "Gold: " + GameManager.Instance.gold;
         float barPercent = (float)GameManager.Instance.playerExperience / (float)Formulas.GetExperienceToNextLevel(GameManager.Instance.playerCharactersStats);
         expBar.transform.localScale = new Vector3(barPercent, 1f, 1f);
-        expBarText.text = GameManager.Instance.playerExperience + "/" + Formulas.GetExperienceToNextLevel(GameManager.Instance.playerCharactersStats);
-        streght.text = "Strength: " + GameManager.Instance.playerCharactersStats.strength;
-        dexterity.text = "Dexterity: " + GameManager.Instance.playerCharactersStats.dexterity;
-        vitality.text = "Vitality: " + GameManager.Instance.playerCharactersStats.vitality;
-        magic.text = "Magic: " + GameManager.Instance.playerCharactersStats.magic;
-        spirit.text = "Spirit: " + GameManager.Instance.playerCharactersStats.spirit;
-        luck.text = "Luck: " + GameManager.Instance.playerCharactersStats.luck;
-        upgradePoints.text = "Upgrade Points: " + GameManager.Instance.upgradePoints;
+        expBarText.text = GameManager.Instance.playerExperience + "/" + Formulas.GetExperienceToNextLevel(GameManager.Instance.playerCharactersStats);  
+        streght.text = "Strength: " + GameManager.Instance.playerCharactersStats.strength + "      ( "+ (GameManager.Instance.weapon.strengthBonus + GameManager.Instance.armor.strengthBonus + GameManager.Instance.accesory.strengthBonus) + " ) " ;
+        dexterity.text = "Dexterity: " + GameManager.Instance.playerCharactersStats.dexterity + "      ( " + (GameManager.Instance.weapon.dexterityBonus + GameManager.Instance.armor.dexterityBonus + GameManager.Instance.accesory.dexterityBonus) + " ) ";
+        vitality.text = "Vitality: " + GameManager.Instance.playerCharactersStats.vitality + "      ( " + (GameManager.Instance.weapon.vitalityBonus + GameManager.Instance.armor.vitalityBonus + GameManager.Instance.accesory.vitalityBonus) + " ) ";
+        magic.text = "Magic: " + GameManager.Instance.playerCharactersStats.magic + "      ( " + (GameManager.Instance.weapon.magicBonus + GameManager.Instance.armor.magicBonus + GameManager.Instance.accesory.magicBonus) + " ) ";
+        spirit.text = "Spirit: " + GameManager.Instance.playerCharactersStats.spirit + "      ( " + (GameManager.Instance.weapon.spiritBonus + GameManager.Instance.armor.spiritBonus + GameManager.Instance.accesory.spiritBonus) + " ) ";
+        luck.text = "Luck: " + GameManager.Instance.playerCharactersStats.luck + "      ( " + (GameManager.Instance.weapon.luckBonus + GameManager.Instance.armor.luckBonus + GameManager.Instance.accesory.luckBonus) + " ) ";
+        upgradePoints.text = "Upgrade Points: ";
 
         if (Time.timeSinceLevelLoad >= 2.0f)
         {

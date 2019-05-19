@@ -9,4 +9,12 @@ public class ButonFunctions : MonoBehaviour
         GameManager.Instance.battleEnemyPrefab = enemyPrefab;
         UnityEngine.SceneManagement.SceneManager.LoadScene("Battle");
     }
+
+    public void BuyEquipment(int id)
+    {
+        if (GameManager.Instance.gold >= GameManager.Instance.equipamentOnSale[id].cost)
+        {
+            GameManager.Instance.gold -=  GameManager.Instance.equipamentOnSale[id].cost;
+        }
+    }
 }

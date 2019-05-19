@@ -122,6 +122,16 @@ public static class Formulas
         return stats.level * 100;
     }
 
+    public static int GetGold(CharacterStats killer, CharacterStats killed)
+    {
+        int levelDiff = killed.level - killer.level;
+        if(levelDiff <= 0)
+        {
+            levelDiff = 1;
+        }
+        return levelDiff * 10;
+    }
+
     public static int GetExperienceEarned(CharacterStats killer, CharacterStats killed)
     {
         int levelDiff = killed.level - killer.level;

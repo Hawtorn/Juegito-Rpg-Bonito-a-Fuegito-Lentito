@@ -4,14 +4,14 @@ using UnityEngine;
 
 
 [System.Serializable]
-public class CharacterStats 
+public struct CharacterStats 
 {
-    public int level = 1;
+    public int level;
     
-    public int strength = 100;
-    public int dexterity = 100;
-    public int vitality = 100;
-    public int magic = 100;
-    public int spirit = 100;
-    public int luck = 100;
+    public int strength;
+    public int dexterity;
+    public int vitality;
+    public int magic;
+    public int spirit;
+    public int luck;
 }

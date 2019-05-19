@@ -152,12 +152,43 @@ MonoBehaviour:
   playerExperience: 0
   gainedExperience: 0
   upgradePoints: 0
+  gold: 0
   battlePlayerPrefab: {fileID: 7116985319969917827, guid: d4abfbabf70918c4b92b458299c5490a,
     type: 3}
   battleEnemyPrefab: {fileID: 4246741292189401041, guid: bc65cbcd68863a042aa4cab532de607b,
     type: 3}
   skills: []
-  equipamentOnSale: []
+  equipamentOnSale:
+  - name: Espada Arrasadora
+    cost: 10
+    slot: 0
+    strengthBonus: 10
+    dexterityBonus: 5
+    vitalityBonus: 0
+    magicBonus: 0
+    spiritBonus: 0
+    luckBonus: 0
+    specialSkill: 
+  - name: Armadura Rulliana
+    cost: 20
+    slot: 1
+    strengthBonus: 0
+    dexterityBonus: 0
+    vitalityBonus: 20
+    magicBonus: 0
+    spiritBonus: 5
+    luckBonus: 0
+    specialSkill: 
+  - name: Pulsera Terminadeseos
+    cost: 20
+    slot: 2
+    strengthBonus: 0
+    dexterityBonus: 0
+    vitalityBonus: 0
+    magicBonus: 20
+    spiritBonus: 0
+    luckBonus: 20
+    specialSkill: 
   equipamentBought: []
   weapon:
     name: Broom
