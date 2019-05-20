@@ -30,7 +30,7 @@ public class UpgradePanelScript : MonoBehaviour
         magic.text = "Magic: " + GameManager.Instance.playerCharactersStats.magic + "      ( " + (GameManager.Instance.weapon.magicBonus + GameManager.Instance.armor.magicBonus + GameManager.Instance.accesory.magicBonus) + " ) ";
         spirit.text = "Spirit: " + GameManager.Instance.playerCharactersStats.spirit + "      ( " + (GameManager.Instance.weapon.spiritBonus + GameManager.Instance.armor.spiritBonus + GameManager.Instance.accesory.spiritBonus) + " ) ";
         luck.text = "Luck: " + GameManager.Instance.playerCharactersStats.luck + "      ( " + (GameManager.Instance.weapon.luckBonus + GameManager.Instance.armor.luckBonus + GameManager.Instance.accesory.luckBonus) + " ) ";
-        upgradePoints.text = "Upgrade Points: ";
+        upgradePoints.text = "Upgrade Points: " + GameManager.Instance.upgradePoints;
 
         if (Time.timeSinceLevelLoad >= 2.0f)
         {

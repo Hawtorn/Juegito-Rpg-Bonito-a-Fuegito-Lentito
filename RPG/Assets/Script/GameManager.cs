@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
 
     public List<string> skills;
 
-    public Equipment[] equipamentOnSale;
+    public List<Equipment> equipamentOnSale;
 
     public List<Equipment> equipamentBought;
     public Equipment weapon;
