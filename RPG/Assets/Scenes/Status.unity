@@ -609,7 +609,7 @@ GameObject:
   - component: {fileID: 205275323}
   - component: {fileID: 205275322}
   m_Layer: 5
-  m_Name: Button (1)
+  m_Name: BatBattle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3320,7 +3320,7 @@ GameObject:
   - component: {fileID: 1589571120}
   - component: {fileID: 1589571119}
   m_Layer: 5
-  m_Name: Button
+  m_Name: SlimeBattle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
